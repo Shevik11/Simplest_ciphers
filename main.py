@@ -3,7 +3,7 @@ import tkinter as tk
 from atbash import atbash_cipher
 from new_window import create_new_window_without_number
 from xor import xor
-
+from cesar import encrypt_caesar, decrypt_caesar
 
 
 def make_textmenu(root):
@@ -52,8 +52,9 @@ btn2 = tk.Button(root, text="Шифрування XOR",
                  command=lambda: create_new_window_without_number(xor, xor, 'xor', shifr_with_num, root))
 btn2.pack(pady=5)
 
-btn3 = tk.Button(root, text="Шифрування Цезаря",
-                 command=lambda: create_new_window_without_number(None, None, 'ceasar'))
+btn3 = tk.Button(root, text="Шифрування Цезаря", command=lambda: create_new_window_without_number(
+    lambda text, key: encrypt_caesar(text, key),
+    lambda text, key: decrypt_caesar(text, key), 'cesar', shifr_with_num, root))
 btn3.pack(pady=5)
 
 btn4 = tk.Button(root, text="Шифрування Віженера",
