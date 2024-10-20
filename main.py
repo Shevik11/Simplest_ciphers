@@ -6,6 +6,7 @@ from xor import xor
 from cesar import encrypt_caesar, decrypt_caesar
 from vigenere import encrypt, decrypt
 from sparta import sparta_encrypt, sparta_decrypt
+from polibiy import polibius_encrypt, polybius_decrypt
 
 DEFAULT_ALPHABET_UA = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
 DEFAULT_ALPHABET_EN = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -45,7 +46,7 @@ def show_textmenu(event):
         print(f"Помилка при показі контекстного меню: {e}")
 
 
-shifr_with_num = ["xor", "cesar", "vigenere", "sparta"]
+shifr_with_num = ["xor", "cesar", "vigenere", "sparta", 'polibiy']
 
 root = tk.Tk()
 root.geometry("400x400")
@@ -115,7 +116,13 @@ btn5.pack(pady=5)
 btn6 = tk.Button(
     root,
     text="Квадрат Полібія",
-    command=lambda: create_new_window_without_number(None, None, "polybius"),
+    command=lambda: create_new_window_without_number(
+        lambda text, key: polibius_encrypt(text, key),
+        lambda text, key: polybius_decrypt(text, key),
+        "polibiy",
+        shifr_with_num,
+        root,
+    ),
 )
 btn6.pack(pady=5)
 

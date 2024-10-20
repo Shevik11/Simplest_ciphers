@@ -25,7 +25,10 @@ def create_new_window_without_number(
     def execute_command(command):
         if command:
             try:
-                if shifr == 'vigenere':
+                if shifr == 'polibiy':
+                    key = str(shift.get())
+                    result = command(text_field.get("1.0", tk.END).strip(), key)
+                elif shifr == 'vigenere':
                     key = str(shift.get())
                     result = command(text_field.get("1.0", tk.END).strip(), key)
                 elif shifr in shifr_with_num:  # Перевірка чи потрібен ключ
