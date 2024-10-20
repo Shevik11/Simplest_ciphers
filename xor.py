@@ -1,6 +1,8 @@
 def xor_cipher(text, key):
     key_length = len(key)
-    encrypted_text = "".join(chr(ord(char) ^ ord(key[i % key_length])) for i, char in enumerate(text))
+    encrypted_text = "".join(
+        chr(ord(char) ^ ord(key[i % key_length])) for i, char in enumerate(text)
+    )
     return encrypted_text
 
 
@@ -49,6 +51,7 @@ def xor():
             print(f"Result was written in {output_file}")
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 if __name__ == "__main__":
     xor()
