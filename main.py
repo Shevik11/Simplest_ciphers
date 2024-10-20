@@ -5,6 +5,7 @@ from new_window import create_new_window_without_number
 from xor import xor
 from cesar import encrypt_caesar, decrypt_caesar
 from vigenere import encrypt, decrypt
+from sparta import sparta_encrypt, sparta_decrypt
 
 DEFAULT_ALPHABET_UA = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
 DEFAULT_ALPHABET_EN = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
@@ -21,7 +22,6 @@ def make_textmenu(root):
 
 
 def callback_select_all(event):
-    # select text after 50ms
     root.after(50, lambda: event.widget.select_range(0, "end"))
 
 
@@ -45,13 +45,13 @@ def show_textmenu(event):
         print(f"Помилка при показі контекстного меню: {e}")
 
 
-shifr_with_num = ["xor", "cesar", "vigenere"]
-
+shifr_with_num = ["xor", "cesar", "vigenere", "sparta"]
 
 root = tk.Tk()
-root.geometry("400x300")
+root.geometry("400x400")
 
-# bind the feature to all Entry widget
+# Контекстне меню для тексту
+make_textmenu(root)
 root.bind_class("Text", "<Button-3><ButtonRelease-3>", show_textmenu)
 root.bind_class("Text", "<Control-a>", callback_select_all)
 
@@ -90,9 +90,8 @@ btn4 = tk.Button(
     root,
     text="Шифрування Віженера",
     command=lambda: create_new_window_without_number(
-        lambda text, key: encrypt(text, key,(DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text) else DEFAULT_ALPHABET_EN)
-),
-        lambda text, key: decrypt(text, key,(DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text) else DEFAULT_ALPHABET_EN)),
+        lambda text, key: encrypt(text, key, (DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text) else DEFAULT_ALPHABET_EN)),
+        lambda text, key: decrypt(text, key, (DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text) else DEFAULT_ALPHABET_EN)),
         "vigenere",
         shifr_with_num,
         root,
@@ -102,8 +101,14 @@ btn4.pack(pady=5)
 
 btn5 = tk.Button(
     root,
-    text="Шифр давньої Спарти Скитала",
-    command=lambda: create_new_window_without_number(None, None, "scytale"),
+    text="Шифр Давньої Спарти Скитала",
+    command=lambda: create_new_window_without_number(
+        lambda text, key: sparta_encrypt(text, key),
+        lambda text, key: sparta_decrypt(text, key),
+        "sparta",
+        shifr_with_num,
+        root,
+    ),
 )
 btn5.pack(pady=5)
 
