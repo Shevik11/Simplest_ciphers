@@ -2,7 +2,7 @@ def sparta_encrypt(text, d):
     k = len(text) % d
     if k > 0:
         # доповнюємо рядок пробілами
-        text += ' ' * (d - k)
+        text += " " * (d - k)
 
     column = len(text) // d
     result = ""
@@ -16,14 +16,14 @@ def sparta_encrypt(text, d):
 
 def sparta_decrypt(text, d):
     column = len(text) // d
-    symbols = [''] * len(text)
+    symbols = [""] * len(text)
     index = 0
     for i in range(column):
         for j in range(d):
             symbols[i + column * j] = text[index]
             index += 1
 
-    return ''.join(symbols)
+    return "".join(symbols)
 
 
 if __name__ == "__main__":

@@ -8,7 +8,9 @@ from vigenere import encrypt, decrypt
 from sparta import sparta_encrypt, sparta_decrypt
 from polibiy import polibius_encrypt, polybius_decrypt
 
-DEFAULT_ALPHABET_UA = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
+DEFAULT_ALPHABET_UA = (
+    "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯабвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
+)
 DEFAULT_ALPHABET_EN = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 
@@ -46,7 +48,7 @@ def show_textmenu(event):
         print(f"Помилка при показі контекстного меню: {e}")
 
 
-shifr_with_num = ["xor", "cesar", "vigenere", "sparta", 'polibiy']
+shifr_with_num = ["xor", "cesar", "vigenere", "sparta", "polibiy"]
 
 root = tk.Tk()
 root.geometry("400x400")
@@ -91,8 +93,24 @@ btn4 = tk.Button(
     root,
     text="Шифрування Віженера",
     command=lambda: create_new_window_without_number(
-        lambda text, key: encrypt(text, key, (DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text) else DEFAULT_ALPHABET_EN)),
-        lambda text, key: decrypt(text, key, (DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text) else DEFAULT_ALPHABET_EN)),
+        lambda text, key: encrypt(
+            text,
+            key,
+            (
+                DEFAULT_ALPHABET_UA
+                if any(c in DEFAULT_ALPHABET_UA for c in text)
+                else DEFAULT_ALPHABET_EN
+            ),
+        ),
+        lambda text, key: decrypt(
+            text,
+            key,
+            (
+                DEFAULT_ALPHABET_UA
+                if any(c in DEFAULT_ALPHABET_UA for c in text)
+                else DEFAULT_ALPHABET_EN
+            ),
+        ),
         "vigenere",
         shifr_with_num,
         root,
