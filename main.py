@@ -74,9 +74,7 @@ main_frame.pack(fill=tk.BOTH, expand=True)
 
 # Заголовок
 title_label = ttk.Label(
-    main_frame,
-    text="Методи шифрування",
-    font=('Helvetica', 16, 'bold')
+    main_frame, text="Методи шифрування", font=("Helvetica", 16, "bold")
 )
 title_label.pack(pady=20)
 
@@ -86,13 +84,13 @@ encryption_functions = {
         "icon": "photo/atbash.png",
         "command": lambda: create_new_window_without_number(
             atbash_cipher, atbash_cipher, "atbash", shifr_with_num, root
-        )
+        ),
     },
     "Шифрування XOR": {
         "icon": "photo/xor.png",
         "command": lambda: create_new_window_without_number(
             xor, xor, "xor", shifr_with_num, root
-        )
+        ),
     },
     "Шифрування Цезаря": {
         "icon": "photo/cesar.png",
@@ -102,7 +100,7 @@ encryption_functions = {
             "cesar",
             shifr_with_num,
             root,
-        )
+        ),
     },
     "Шифрування Віженера": {
         "icon": "photo/vigenere.png",
@@ -110,19 +108,25 @@ encryption_functions = {
             lambda text, key: encrypt(
                 text,
                 key,
-                (DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text)
-                 else DEFAULT_ALPHABET_EN),
+                (
+                    DEFAULT_ALPHABET_UA
+                    if any(c in DEFAULT_ALPHABET_UA for c in text)
+                    else DEFAULT_ALPHABET_EN
+                ),
             ),
             lambda text, key: decrypt(
                 text,
                 key,
-                (DEFAULT_ALPHABET_UA if any(c in DEFAULT_ALPHABET_UA for c in text)
-                 else DEFAULT_ALPHABET_EN),
+                (
+                    DEFAULT_ALPHABET_UA
+                    if any(c in DEFAULT_ALPHABET_UA for c in text)
+                    else DEFAULT_ALPHABET_EN
+                ),
             ),
             "vigenere",
             shifr_with_num,
             root,
-        )
+        ),
     },
     "Шифр Давньої Спарти Скитала": {
         "icon": "photo/sparta.png",
@@ -132,7 +136,7 @@ encryption_functions = {
             "sparta",
             shifr_with_num,
             root,
-        )
+        ),
     },
     "Квадрат Полібія": {
         "icon": "photo/polibiy.png",
@@ -142,13 +146,13 @@ encryption_functions = {
             "polibiy",
             shifr_with_num,
             root,
-        )
-    }
+        ),
+    },
 }
 
 # Створення стилю для кнопок
 style = ttk.Style()
-style.configure('Custom.TButton', padding=(10, 5, 10, 5))
+style.configure("Custom.TButton", padding=(10, 5, 10, 5))
 
 # Створення кнопок з іконками
 for text, data in encryption_functions.items():
@@ -157,15 +161,15 @@ for text, data in encryption_functions.items():
     btn_frame.pack(pady=8, padx=20, fill=tk.X)
 
     # Завантажуємо іконку
-    icon = load_and_resize_icon(data['icon'])
+    icon = load_and_resize_icon(data["icon"])
 
     # Створюємо кнопку
     btn = ttk.Button(
         btn_frame,
         text=text,
-        command=data['command'],
-        style='Custom.TButton',
-        cursor="hand2"
+        command=data["command"],
+        style="Custom.TButton",
+        cursor="hand2",
     )
     btn.pack(side=tk.LEFT, fill=tk.X, expand=True)
 
@@ -177,11 +181,7 @@ for text, data in encryption_functions.items():
 # Кнопка виходу з іконкою
 exit_icon = load_and_resize_icon("photo/exit.png")
 exit_btn = ttk.Button(
-    main_frame,
-    text="Вихід",
-    command=root.quit,
-    style='Custom.TButton',
-    cursor="hand2"
+    main_frame, text="Вихід", command=root.quit, style="Custom.TButton", cursor="hand2"
 )
 
 if exit_icon:
@@ -192,9 +192,7 @@ exit_btn.pack(pady=(20, 0), padx=20, fill=tk.X)
 
 # Інформаційний текст
 info_label = ttk.Label(
-    main_frame,
-    text="© 2024 Encryption Tools",
-    font=('Helvetica', 8)
+    main_frame, text="© 2024 Encryption Tools", font=("Helvetica", 8)
 )
 info_label.pack(side=tk.BOTTOM, pady=10)
 
